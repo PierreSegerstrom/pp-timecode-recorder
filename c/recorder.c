@@ -82,7 +82,7 @@ int main( int argc , char const *argv[] )
     gettimeofday(&init, 0);
 
 
-    // Value necessary for continous handling of input
+    // Values necessary for continous handling of input
     char content_prev[ CONTENT_SIZE ] = { 0 };
     char content_curr[ CONTENT_SIZE ] = { 0 };
     char time_prev[ 13 ] = { 0 };
