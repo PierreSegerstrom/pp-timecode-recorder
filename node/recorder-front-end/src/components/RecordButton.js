@@ -1,27 +1,36 @@
 import './RecordButton.css';
+import recordButtonImage from '../pics/record.svg';
+import stopButtonImage from '../pics/stop.svg';
+import loadingImage from '../pics/loading.svg';
 
 const RecordButton = props =>
 {
     switch ( props.isRecording )
     {
         case false:
-            // TODO: Render "start-image"
             return (
-                <button onClick={ props.start }>
-                    Starta!
-                </button>
+                <img
+                    onClick = { props.start }
+                    src = { recordButtonImage }
+                    alt = "Recording Button"
+                />
             );
         case true:
-            // TODO: Render "stop-image"
             return (
-                <button onClick={ props.stop }>
-                    Stoppa.
-                </button>
+                <img
+                    onClick = { props.stop }
+                    src = { stopButtonImage }
+                    alt = "Stop Button"
+                />
             );
         // Awaiting state of recording via fetch
         default:
-            // TODO: Render "loading-gif"
-            return null;
+            return (
+                <img
+                    src = { loadingImage }
+                    alt = "Loading..."
+                />
+            );
     }
 }
 

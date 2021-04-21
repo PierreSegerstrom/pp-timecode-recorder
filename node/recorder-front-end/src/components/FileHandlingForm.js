@@ -20,13 +20,18 @@ class FileHandlingForm extends Component
         if ( this.props.show )
         {
             return (
-                <form onSubmit={ () => this.props.send(this.state.newFileName) }>
-                    <label>
-                        Nytt filnamn:
-                        <input type="text" value={this.state.newFileName} onChange={this.updateWithText} />
-                    </label>
-                    <input type="submit" value="Skicka email" />
-                </form>
+                <div className="formContainer">
+                    <form onSubmit={ (e) => {
+                        e.preventDefault();
+                        if (this.state.newFileName) this.props.send(this.state.newFileName)
+                    } }>
+                        <label>
+                            Filnamn:
+                            <input type="text" value={`${this.state.newFileName}`} placeholder="[filnamn].srt" onChange={this.updateWithText} />
+                        </label>
+                        <input className="submitButton" type="submit" value="Skicka" />
+                    </form>
+                </div>
             );
         }
         else

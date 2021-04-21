@@ -1,0 +1,60 @@
+.formContainer {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(20, 20, 20, 0.5);
+}
+
+form {
+    display: flex;
+    background: white;
+    width: 80vmin;
+    max-width: 800px;
+    height: 40vmin;
+    padding: 38px 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+    font-size: calc(12px + 2vmin);
+}
+
+label {
+    display: block;
+    width: 90%;
+    font-size: calc(14px + 1.5vmax);
+}
+
+/* Restrict default OS styling */
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+label input {
+    width: 90%;
+    margin: 10px 0 40px 0;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #777;
+    font-size: calc(14px + 1.5vmax);
+}
+
+.submitButton {
+    display: block;
+    width: 40%;
+    padding: calc(10px + 0.5vmin);
+    background-color: #333d52;
+    color: white;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+    font-size: calc(12.5px + 1.4vmin);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}

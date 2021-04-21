@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecordButton from './components/RecordButton';
 import FileHandlingForm from './components/FileHandlingForm';
+import './App.css';
 
 class App extends Component
 {
@@ -52,6 +53,10 @@ class App extends Component
 
     sendMail = (newFileName) =>
     {
+        // Reset state once function is called
+        this.setState({ showFileActions: false });
+        console.log("Sent email!");
+
         fetch("/api/mail_renamed_file", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -63,11 +68,10 @@ class App extends Component
                 if (!res.ok) {
                     throw new Error("Error while trying to send email.");
                 }
-                // If response was okay, set state
-                this.setState({ showFileActions: false });
-                console.log("Sent email!");
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+            });
     }
     
 
@@ -82,7 +86,7 @@ class App extends Component
     render()
     {
         return (
-            <div className = "App">
+            <div className="App">
                 <RecordButton
                     isRecording = {this.state.recording}
                     start = {this.startRecording}
