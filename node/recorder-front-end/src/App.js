@@ -55,8 +55,8 @@ class App extends Component
     {
         // Reset state once function is called
         this.setState({ showFileActions: false });
-        console.log("Sent email!");
 
+        // Proceed to send mail
         fetch("/api/mail_renamed_file", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -68,6 +68,7 @@ class App extends Component
                 if (!res.ok) {
                     throw new Error("Error while trying to send email.");
                 }
+                console.log("Sent email!");
             })
             .catch(err => {
                 console.error(err);
