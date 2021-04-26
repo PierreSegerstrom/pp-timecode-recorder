@@ -1,44 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './FileHandlingForm.css';
 
-class FileHandlingForm extends Component
-{
-    constructor(props)
-    { 
-        super(props);
-        this.state = {
-            newFileName: ""
-        };
-    }
 
-    updateWithText = (event) => {
-        this.setState({newFileName: event.target.value});
-    }
+const FileHandlingForm = (props) => {
+    const [fileName, setFileName] = useState('');
 
-    render()
-    {
-        if ( this.props.show )
-        {
-            return (
+    return (
+        <div>
+            { props.show &&
                 <div className="formContainer">
                     <form onSubmit={ (e) => {
                         e.preventDefault();
-                        if (this.state.newFileName) this.props.send(this.state.newFileName)
-                    } }>
+                        if (fileName) props.send(fileName);
+                    }}>
                         <label>
                             Filnamn:
-                            <input type="text" value={`${this.state.newFileName}`} placeholder="[filnamn].srt" onChange={this.updateWithText} />
+                            <input
+                                type="text"
+                                value={fileName}
+                                placeholder="[filnamn].srt"
+                                onChange={(e) => setFileName(e.target.value)}
+                            />
                         </label>
-                        <input className="submitButton" type="submit" value="Skicka" />
+                        <input
+                            className="submitButton"
+                            type="submit"
+                            value="Skicka"
+                        />
                     </form>
                 </div>
-            );
-        }
-        else
-        {
-            return null;
-        }
-    }
+            }
+        </div>
+    );
 }
 
 export default FileHandlingForm;
