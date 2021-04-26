@@ -6,9 +6,6 @@ const srtFunctions = require('./srt-functions');
 
 // Load environment variables from .env-file
 require('dotenv').config()
-
-
-// ProPresenter Values
 const pp_port = process.env.PP_PORT;
 const pp_host = process.env.PP_HOST ? process.env.PP_HOST : 'localhost';
 const pp_password = process.env.PP_PASSWORD;
