@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RecordButton from './components/RecordButton';
+import ActionButton from './components/ActionButton';
 import FileHandlingForm from './components/FileHandlingForm';
 import './App.css';
 
@@ -88,7 +88,7 @@ class App extends Component
     {
         return (
             <div className="App">
-                <RecordButton
+                <ActionButton
                     isRecording = {this.state.recording}
                     start = {this.startRecording}
                     stop = {this.stopRecording}
