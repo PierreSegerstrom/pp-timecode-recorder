@@ -5,8 +5,12 @@ import './FileHandlingForm.css';
 const FileHandlingForm = (props) =>
 {
     const [fileName, setFileName] = useState('');
+    const [waitingOnEmail, setWaitingOnEmail] = useState(false);
 
     const sendMail = (newFileName) => {
+        // Now waiting for "completed email confirmation"
+        setWaitingOnEmail(true);
+
         fetch("/api/mail_renamed_file", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -21,6 +25,7 @@ const FileHandlingForm = (props) =>
                 // Once mail is sent, update state
                 props.hideFileForm();
                 setFileName('');
+                setWaitingOnEmail(false);
                 console.log("Email was sent!");
             })
             .catch(err => {
@@ -37,7 +42,7 @@ const FileHandlingForm = (props) =>
                         if (fileName) sendMail(fileName);
                     }}>
                         <label>
-                            Filnamn:
+                            { waitingOnEmail ? 'Skickar...' : 'Filnamn:' }
                             <input
                                 type="text"
                                 value={fileName}
