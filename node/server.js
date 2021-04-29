@@ -6,9 +6,9 @@ const srtFunctions = require('./srt-functions');
 
 // Load environment variables from .env-file
 require('dotenv').config()
-const pp_port = process.env.PP_PORT;
-const pp_host = process.env.PP_HOST ? process.env.PP_HOST : 'localhost';
-const pp_password = process.env.PP_PASSWORD;
+const PP_PORT = process.env.PP_PORT;
+const PP_HOST = process.env.PP_HOST ? process.env.PP_HOST : 'localhost';
+const PP_PASSWORD = process.env.PP_PASSWORD;
 
 
 // Perserving state of server
@@ -50,8 +50,8 @@ makeConnection();
 
 
 function makeConnection() {
-    console.log(`Connecting to ProPresenter ${pp_host}:${pp_port}...`);
-    socket.connect(pp_port, pp_host);
+    console.log(`Connecting to ProPresenter ${PP_HOST}:${PP_PORT}...`);
+    socket.connect(PP_PORT, PP_HOST);
 }
 
 
@@ -62,7 +62,7 @@ function connectEventHandler() {
     // * ProPresenter 7
     // socket.write(`{"pwd":avteam,"ptl":610,"acn":"ath"}`);
     // * ProPresenter 6
-    socket.write(`<StageDisplayLogin>${pp_password}</StageDisplayLogin>\r\n`);
+    socket.write(`<StageDisplayLogin>${PP_PASSWORD}</StageDisplayLogin>\r\n`);
 }
 
 
@@ -150,10 +150,13 @@ function errorEventHandler() {
 
 const express = require('express');
 const app = express();
-const express_port = 5000;
+const cors = require('cors');
+const EXPRESS_PORT = process.env.SERVER_PORT;
+const EXPRESS_IP = process.env.SERVER_IP;
 
 
 // Parsing middleware
+app.use(cors());
 app.use(express.json());
 
 
@@ -222,8 +225,8 @@ app.post('/api/mail_renamed_file', (req, res) =>
 
 
 // Start Express backend
-app.listen(express_port, () => {
-    console.log(`Example app listening at http://localhost:${express_port}`);
+app.listen(EXPRESS_PORT, EXPRESS_IP, () => {
+    console.log(`Example app listening at http://${EXPRESS_IP}:${EXPRESS_PORT}`);
 });
 
 
