@@ -12,10 +12,10 @@ const App = () => {
             <ActionButton
                 revealFileForm = { () => setShowFileForm(true) }
             />
+            {showFileForm &&
             <FileHandlingForm
-                show = { showFileForm }
                 hideFileForm = { () => setShowFileForm(false) }
-            />
+            />}
         </div>
     );
 }
