@@ -3,3 +3,4 @@
 *.srt
 node_modules
 *.ai
+*.app
