@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './FileHandlingForm.css';
 
+const { REACT_APP_SERVER_IP, REACT_APP_SERVER_PORT } = process.env;
+
 
 const FileHandlingForm = (props) =>
 {
@@ -11,7 +13,7 @@ const FileHandlingForm = (props) =>
         // Now waiting for "completed email confirmation"
         setWaitingOnEmail(true);
 
-        fetch("/api/mail_renamed_file", {
+        fetch(`http://${REACT_APP_SERVER_IP}:${REACT_APP_SERVER_PORT}/api/mail_renamed_file`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -35,29 +37,27 @@ const FileHandlingForm = (props) =>
 
     return (
         <div>
-            { props.show &&
-                <div className="formContainer">
-                    <form onSubmit={ (e) => {
-                        e.preventDefault();
-                        if (fileName) sendMail(fileName);
-                    }}>
-                        <label>
-                            { waitingOnEmail ? 'Skickar...' : 'Filnamn:' }
-                            <input
-                                type="text"
-                                value={fileName}
-                                placeholder="[filnamn].srt"
-                                onChange={(e) => setFileName(e.target.value)}
-                            />
-                        </label>
+            <div className="formContainer">
+                <form onSubmit={ (e) => {
+                    e.preventDefault();
+                    if (fileName) sendMail(fileName);
+                }}>
+                    <label>
+                        { waitingOnEmail ? 'Skickar...' : 'Filnamn:' }
                         <input
-                            className="submitButton"
-                            type="submit"
-                            value="Skicka"
+                            type="text"
+                            value={fileName}
+                            placeholder="[filnamn].srt"
+                            onChange={(e) => setFileName(e.target.value)}
                         />
-                    </form>
-                </div>
-            }
+                    </label>
+                    <input
+                        className="submitButton"
+                        type="submit"
+                        value="Skicka"
+                    />
+                </form>
+            </div>
         </div>
     );
 }
