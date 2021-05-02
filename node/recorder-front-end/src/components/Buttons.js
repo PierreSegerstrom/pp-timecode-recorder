@@ -9,7 +9,6 @@ const { REACT_APP_SERVER_IP, REACT_APP_SERVER_PORT } = process.env;
 export const RecordButton = (props) =>
 {
     const performRecord = () => {
-        console.log(REACT_APP_SERVER_IP);
         fetch(`http://${REACT_APP_SERVER_IP}:${REACT_APP_SERVER_PORT}/api/recording_start/`, { method: "POST" })
             .then(res => {
                 if (!res.ok) {
