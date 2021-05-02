@@ -160,44 +160,36 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/api/recording', (req, res) =>
-{
+app.get('/api/recording', (req, res) => {
     res.send(_recording);
 });
 
 
-app.post('/api/recording_start', (req, res) =>
-{
-    if (_recording)
-    {
+app.post('/api/recording_start', (req, res) => {
+    if (_recording) {
         // Status 409: Conflict
         res.sendStatus(409);
     }
-    else
-    {
+    else {
         initFileRecording();
         res.sendStatus(200);
     }
 });
 
 
-app.post('/api/recording_stop', (req, res) =>
-{
-    if (!_recording)
-    {
+app.post('/api/recording_stop', (req, res) => {
+    if (!_recording) {
         // Status 409: Conflict
         res.sendStatus(409);
     }
-    else
-    {
+    else {
         stopFileRecording();
         res.sendStatus(200);
     }
 });
 
 
-app.post('/api/mail_renamed_file', (req, res) =>
-{
+app.post('/api/mail_renamed_file', (req, res) => {
     const newFileName = req.body.newFileName;
     let mailOptions = mailConfig.getMailOptions(_initTime);
 
