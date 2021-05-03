@@ -1,31 +1,52 @@
 import React, { useState } from 'react';
-import { useTransition, animated } from 'react-spring'
+import { animated, useTransition } from 'react-spring';
 
-import ActionButton from './components/ActionButton';
+import ButtonManager from './components/ButtonManager';
 import FileHandlingForm from './components/FileHandlingForm';
 import './App.css';
 
 
 const App = () => {
-    const [showFileForm, setShowFileForm] = useState(false);
+    // Toggle between showing buttons (true), and showing "file form" (false)
+    const [appState, setAppState] = useState(true);
+    const toggleAppState = () => setAppState(b => !b);
 
-    const slideUpFade = useTransition(showFileForm, {
-        from:   { y: 100,   opacity: 0 },
+    const toggleButtons = useTransition(appState, {
+        from:   { y: 150,   opacity: 0 },
         enter:  { y: 0,     opacity: 1 },
-        leave:  { y: 100,   opacity: 0 }
+        leave:  { y: -150,  opacity: 0 },
+        config: {
+            tension: 150,
+            friction: 25.0
+        }
+    });
+
+    const toggleFileForm = useTransition(!appState, {
+        from:   { y: 150,   opacity: 0 },
+        enter:  { y: 0,     opacity: 1 },
+        leave:  { y: -150,  opacity: 0 },
+        config: {
+            tension: 150,
+            friction: 25.0
+        },
     });
 
     return (
         <div className="App">
-            <ActionButton
-                revealFileForm = { () => setShowFileForm(true) }
-            />
-            {slideUpFade(({y, opacity}, item) => (
+            {toggleButtons((styles, item) => (
+                item &&
+                <animated.div style={styles}>
+                    <ButtonManager
+                        hideButtons = { toggleAppState }
+                    />
+                </animated.div>
+            ))}
+            {toggleFileForm(({y, opacity}, item) => (
                 item &&
                 <animated.div style={{ opacity: opacity }} className="overlay">
                     <animated.div style={{ y: y }}>
                         <FileHandlingForm
-                            hideFileForm = { () => setShowFileForm(false) }
+                            hideFileForm = { toggleAppState }
                         />
                     </animated.div>
                 </animated.div>
