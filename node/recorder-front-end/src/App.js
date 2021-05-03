@@ -12,7 +12,7 @@ const App = () => {
     const toggleAppState = () => setAppState(b => !b);
 
     const toggleButtons = useTransition(appState, {
-        from:   { y: 150,   opacity: 0 },
+        from:   { y: 75,   opacity: 0 },
         enter:  { y: 0,     opacity: 1 },
         leave:  { y: -150,  opacity: 0 },
         config: {
@@ -22,9 +22,9 @@ const App = () => {
     });
 
     const toggleFileForm = useTransition(!appState, {
-        from:   { y: 150,   opacity: 0 },
+        from:   { y: 175,   opacity: 0 },
         enter:  { y: 0,     opacity: 1 },
-        leave:  { y: -200,  opacity: 0 },
+        leave:  { y: -150,  opacity: 0 },
         config: {
             tension: 175,
             friction: 25.0

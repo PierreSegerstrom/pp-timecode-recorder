@@ -54,7 +54,7 @@ const ActionButton = (props) =>
 
     const moveStop = useTransition(isRecording, {
         from: {
-            y: 100,
+            y: 150,
             height: '0vmin',
             opacity: 0
         },
@@ -64,9 +64,13 @@ const ActionButton = (props) =>
             opacity: 1
         },
         leave: {
-            y: 100,
+            y: 150,
             height: '0vmin',
             opacity: 0
+        },
+        config: {
+            tension: 175,
+            friction: 25
         }
     });
 
