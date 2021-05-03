@@ -164,6 +164,12 @@ app.get('/api/recording', (req, res) => {
     res.send(_recording);
 });
 
+app.get('/api/recording_duration', (req, res) => {
+    res.send({
+        recordingDuration: (_initTime) ? (Date.now() - _initTime) : 0
+    });
+});
+
 
 app.post('/api/recording_start', (req, res) => {
     if (_recording) {
