@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { animated, useSpring } from 'react-spring';
+
 import './FileHandlingForm.css';
 
 const { REACT_APP_SERVER_IP, REACT_APP_SERVER_PORT } = process.env;
@@ -43,15 +45,37 @@ const FileHandlingForm = (props) =>
             });
     }
 
+    const [runShake, setRunShake] = useState(false);
+    const shake = useSpring({
+        from: { x: 0 },
+        to: { x: 1 },
+        config: {
+            mass: 1.0,
+            tension: 2000,
+            friction: 25.0
+        },
+        cancel: !runShake,
+        reset: runShake,
+        onRest() { setRunShake(false); }
+    });
+
     return (
         <div>
             <form onSubmit={ (e) => {
                 e.preventDefault();
                 if (fileName) sendMail(fileName);
+                else setRunShake(true);
             }}>
                 <label>
                     { status }
-                    <input
+                    <animated.input style={{
+                        transform: shake.x
+                        .to({
+                          range: [0, 0.10, 0.20, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                          output: [0, 20, -20, 15, -15, 10, -10, 5, 0]
+                        })
+                        .to(x => `translate3d(${x}px, 0px, 0px)`)
+                    }}
                         type="text"
                         value={fileName}
                         placeholder="[filnamn].srt"
