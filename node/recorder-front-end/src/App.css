@@ -4,7 +4,8 @@
     min-height: 100%;
     align-items: center;
     justify-content: center;
-    background-color: #323842;
+    background: #323842;
+    background: radial-gradient(circle, rgba(63,68,79,1) 15%, rgba(50,56,66,1) 50%, rgba(32,36,42,1) 100%);
 }
 
 .overlay {
