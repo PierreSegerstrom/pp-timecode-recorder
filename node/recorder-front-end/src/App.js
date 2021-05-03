@@ -16,7 +16,7 @@ const App = () => {
         enter:  { y: 0,     opacity: 1 },
         leave:  { y: -150,  opacity: 0 },
         config: {
-            tension: 150,
+            tension: 175,
             friction: 25.0
         }
     });
@@ -24,9 +24,9 @@ const App = () => {
     const toggleFileForm = useTransition(!appState, {
         from:   { y: 150,   opacity: 0 },
         enter:  { y: 0,     opacity: 1 },
-        leave:  { y: -150,  opacity: 0 },
+        leave:  { y: -200,  opacity: 0 },
         config: {
-            tension: 150,
+            tension: 175,
             friction: 25.0
         },
     });
