@@ -120,7 +120,7 @@ const ActionButton = (props) =>
         </animated.div>
         {moveStop((styles, item) => (
             item &&
-            <animated.div style={styles}>
+            <animated.div className='stop-container' style={styles}>
                 <StopButton
                     stopRecording = { () => setIsRecording(false) }
                     hideButtons = { props.hideButtons }

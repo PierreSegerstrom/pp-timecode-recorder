@@ -17,6 +17,14 @@ img {
     flex-direction: row;
 }
 
+.recording-container:hover {
+    filter: brightness(90%);
+}
+
+.stop-container:hover {
+    filter: brightness(90%);
+}
+
 .time-container {
     width: 0;
     font-size: calc(14px + 0.5vmin);
